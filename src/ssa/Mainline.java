@@ -3,33 +3,49 @@ package ssa;
 public class Mainline {
 	
 	public static void main(String[] args) {
-		Account Checking = new Account();
-		Checking.accountId = 100;
-		Checking.description = "My personal checking";
-		Checking.balance = 500;
-		System.out.println(Checking.description + "..." + Checking.balance);
-		System.out.println("+ $200 deposit");
-		System.out.println(Checking.description + "..." +  Checking.deposit(200));
-		System.out.println("-$600 withdrawal");
-		System.out.println(Checking.description + "..." + Checking.withdrawal(600));
-		Checking.deposit(100);
-		System.out.println("+ $100 deposit");
-		System.out.println(Checking.description + "..." + Checking.withdrawal(300));
-		System.out.println(Checking.description + "..." + Checking.withdrawal(200));
-		
-		//start of savings account		
-		Account Savings = new Account();
-		Savings.accountId = 200;
-		Savings.description = "My personal savings";
-		Savings.balance = 1000;
-		System.out.println(Savings.description + "..." + Savings.balance);
-		System.out.println(Savings.description + "..." + Savings.withdrawal(750));
-		System.out.println("-$750 withdrawal");
-		System.out.println(Savings.description + "..." + Savings.withdrawal(250));
-		System.out.println("-$250 withdrawal");
-		System.out.println(Savings.description + "..." +  Savings.deposit(200));
-		System.out.println("+ $200 deposit");
-		
-		System.out.printf(Checking.description + "..." + Checking.balance + " " + Savings.description + "..." + Savings.balance);
+		Account checking1 = new Account();
+		checking1.setDescription("My personal checking account");
+		checking1.deposit(800.00); //Beginning balance is 0
+		checking1.print();
+		checking1.deposit(300.00);
+		checking1.print();
+		checking1.withdraw(699.99);
+		checking1.print();
+		checking1.deposit(149.99);
+		checking1.print();
+		checking1.withdraw(950.00);  // this should fail!
+		checking1.print();
+		checking1.withdraw(200.00);
+		checking1.print(); // balance should be 350
+		//
+		Account savings1 = new Account("My personal savings account");
+		savings1.deposit(1000.00);
+		savings1.print();
+		savings1.deposit(400.00);
+		savings1.print();
+		savings1.withdraw(750.00);
+		savings1.print();
+		savings1.withdraw(250.00);
+		savings1.print();
+		savings1.deposit(650.00);
+		savings1.print(); // balance should be 1050.00
+		// the transfer
+		checking1.transferFrom(savings1, 100.00); // transfer 100 from savings to checking
+		// another account
+		Account checking2 = new Account("My slush fund checking account");
+		checking2.deposit(300.00);
+		checking2.print();
+		checking2.withdraw(150.00);
+		checking2.print();
+		checking2.deposit(250.00);
+		checking2.print();
+
+		// more to come. Will be updated during the lab...*
+
+		// print out all account balances
+		System.out.println(checking1.print());
+		System.out.println(checking2.print());
+		System.out.println(savings1.print());
+
 	}
 }

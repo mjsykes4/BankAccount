@@ -2,29 +2,74 @@ package ssa;
 
 public class Account {
 
-	int accountId;
-	String description;
-	int balance;
-	int amount;
-	
-	void accountDetails(String aDescription) {
-		description = aDescription;
+	private int id;
+	public String description;
+	private double balance = 0;
+	double amount;
+	private static int idCreate =52753;
+
+	public int getId() {
+		  return id;
+		}
+	private void setId(int anId) {
+		  id = anId;
 	}
-	int deposit(int amount) {
+	public double getBalance() {
+		  return balance;
+	}
+	private void setBalance(int aBalance) {
+		  balance = aBalance;
+	}
+	public String getDescription() {
+	    return this.description;
+	  }
+	public void setDescription(String description) {
+	    this.description = description;
+	  }
+	 public Account() {
+		 this.balance = 0;
+		 this.id = idCreate++;
+		 this.description = "";
+	  }
+	public Account(String description) {
+		this.balance = 0;
+		this.id = idCreate++;
+		this.description = description;
+	}
+	public Account(int id, String description) {
+		this.balance = 0;
+		this.id = id;
+		this.description = description;		
+	}
+
+	double deposit(double amount) {
 		balance += amount;
 		return (balance); 
 	}
-
-	int withdrawal(int amount) {
+	double withdraw(double amount) {
 		if(amount > balance) {
-		System.out.println("Insufficient funds");
+		System.out.printf("You attempted to withdrawal $" + String.format("%.2f", amount));
+		System.out.println(" Insufficient funds to complete transaction");
 		return balance;
 		} else {
 		balance -= amount;
 		return (balance);
 		}
 	}
+	public void transferFrom(Account account, double amount) {
+		 account.getBalance();
+		 		if(amount > account.getBalance())	{
+				System.out.printf("You attempted to transfer " + amount );
+				System.out.println("Insufficient funds to complete transaction");
+				} else {
+				account.withdraw(amount);
+				this.deposit(amount);
+				}		
+	  }
+	public String print() {
+		return "Account " + id + " balance is $ " + String.format("%.2f", balance);
+	}
 }
 
-		
+	
 			
