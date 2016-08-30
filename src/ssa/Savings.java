@@ -2,7 +2,10 @@ package ssa;
 
 public class Savings extends Account {
 	private double InterestRate;
-
+	
+	public Savings(double aRate) {
+		this.InterestRate = aRate;
+	}
 	public double getInterestRate() {
 		return InterestRate;
 	}
@@ -22,5 +25,4 @@ public class Savings extends Account {
 		return 0;
 		}
 	}
-
 }

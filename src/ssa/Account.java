@@ -4,7 +4,7 @@ public class Account {
 
 	private int id;
 	public String description;
-	private double balance = 0;
+	protected double balance = 0;
 	double amount;
 	private static int idCreate =52753;
 
@@ -17,7 +17,7 @@ public class Account {
 	public double getBalance() {
 		  return balance;
 	}
-	private void setBalance(int aBalance) {
+	void setBalance(int aBalance) {
 		  balance = aBalance;
 	}
 	public String getDescription() {
